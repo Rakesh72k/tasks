@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student CRUD App</title>
+  <link rel="stylesheet" href="curd.css">
+</head>
+<body>
+  <h2>Student CRUD App</h2>
+
+  <form id="studentForm">
+    <input type="text" id="studentName" placeholder="Name" required>
+    <input type="number" id="studentAge" placeholder="Age" required>
+    <button type="submit" id="submitButton">Add</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody"></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById("studentForm");
+    const nameInput = document.getElementById("studentName");
+    const ageInput = document.getElementById("studentAge");
+    const submitBtn = document.getElementById("submitButton");
+    const tableBody = document.getElementById("studentTableBody");
+
+    let students = [];
+    let editIndex = null;
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const age = ageInput.value.trim();
+
+      if (!name || !age) return;
+
+      if (editIndex === null) {
+        students.push({ name, age });
+      } else {
+        students[editIndex] = { name, age };
+        editIndex = null;
+        submitBtn.textContent = "Add";
+      }
+
+      form.reset();
+      renderTable();
+    });
+
+    function renderTable() {
+      tableBody.innerHTML = "";
+      students.forEach((student, index) => {
+        const row = `
+          <tr>
+            <td>${student.name}</td>
+            <td>${student.age}</td>
+            <td>
+              <button onclick="editStudent(${index})">Edit</button>
+              <button onclick="deleteStudent(${index})">Delete</button>
+            </td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    function editStudent(index) {
+      nameInput.value = students[index].name;
+      ageInput.value = students[index].age;
+      editIndex = index;
+      submitBtn.textContent = "Save";
+    }
+
+    function deleteStudent(index) {
+      students.splice(index, 1);
+      renderTable();
+    }
+
+    window.editStudent = editStudent;
+    window.deleteStudent = deleteStudent;
+  </script>
+</body>
+</html>

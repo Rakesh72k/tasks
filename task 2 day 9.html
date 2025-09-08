@@ -1,0 +1,130 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Student Report Generator </h2>
+
+<p>Enter Student Name:</p>
+<input type="text" id="studentName" value="Ganesh"><br><br>
+
+<p>Enter Marks (math, science, english):</p>
+<input type="number" id="math" placeholder="Math"><br>
+<input type="number" id="science" placeholder="Science"><br>
+<input type="number" id="english" placeholder="English"><br><br>
+
+<button onclick="showReport()">Generate Report</button>
+
+<hr>
+<div id="report"></div>
+
+<script>
+
+function getGrade(marks) {
+  if (marks >= 90) return "A";
+  else if (marks >= 75) return "B";
+  else if (marks >= 50) return "C";
+  else return "Fail";
+}
+
+function generateReport(student) {
+  let total = 0;
+  let count = 0;
+  let marksList = "";
+
+
+  for (let subject in student.marks) {
+    let score = student.marks[subject];
+    let grade = getGrade(score);
+    total += score;
+    count++;
+    marksList += `<li>${subject}: ${score} → Grade ${grade}</li>`;
+  }
+
+  let average = total / count;
+
+  let overallGrade = getGrade(average);
+
+  
+  return `
+    <p><b>Student:</b> ${student.name}</p>
+    <ul>${marksList}</ul>
+    <p><b>Total:</b> ${total}</p>
+    <p><b>Average:</b> ${average.toFixed(2)}</p>
+    <p><b>Overall Grade:</b> ${overallGrade}</p>
+  `;
+}
+
+function showReport() {
+  let student = {
+    name: document.getElementById("studentName").value,
+    marks: {
+      math: Number(document.getElementById("math").value),
+      science: Number(document.getElementById("science").value),
+      english: Number(document.getElementById("english").value)
+    }
+  };
+
+  let report = generateReport(student);
+  document.getElementById("report").innerHTML = report;
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Simple Banking System</h2>
+
+<input type="number" id="amount" placeholder="Enter amount"><br><br>
+
+<button onclick="deposit()">Deposit</button>
+<button onclick="withdraw()">Withdraw</button>
+<button onclick="checkBalance()">Check Balance</button>
+
+<p id="result"></p>
+
+<script>
+let balance = 10000; 
+
+function deposit() {
+  let amount = Number(document.getElementById("amount").value);
+  balance = balance + amount;
+  document.getElementById("result").innerHTML = "Deposited " + amount;
+}
+
+function withdraw() {
+  let amount = Number(document.getElementById("amount").value);
+  if (amount <= balance) {
+    balance = balance - amount;
+    document.getElementById("result").innerHTML = "Withdrew " + amount;
+  } else {
+    document.getElementById("result").innerHTML = "Not enough balance!";
+  }
+}
+
+function checkBalance() {
+  let text = "Balance = " + balance;
+  if (balance < 100) {
+    text += " (Low Balance)";
+  }
+  document.getElementById("result").innerHTML = text;
+}
+</script>
+
+</body>
+</html>

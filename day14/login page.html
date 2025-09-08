@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+<link rel="stylesheet" href="mno.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-box">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Enter your Email" required>
+      <input type="password" id="password" placeholder="Enter your Password" required>
+      <p id="message" class="error"></p>
+      <button type="submit">Login</button>
+    </form>
+    <p id="thankyou" class="success"></p>
+  </div>
+
+
+  <script>
+    
+    const validEmail = "user@example.com";
+    const validPassword = "User@123";
+
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+    const thankyou = document.getElementById("thankyou");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let email = document.getElementById("email").value.trim();
+      let password = document.getElementById("password").value.trim();
+
+      //  validation   emailformat 
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (!email.match(emailPattern)) {
+        message.textContent = "⚠ Invalid email format!";
+        thankyou.textContent = "";
+        return;
+      }
+
+      
+      let passPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!#%*?&]{6,}$/;
+      if (!password.match(passPattern)) {
+        message.textContent = "⚠ Password must be 6+ chars, include uppercase, number & special char!";
+        thankyou.textContent = "";
+        return;
+      }
+
+      //strength
+      if (email === validEmail && password === validPassword) {
+        message.textContent = "";
+        thankyou.textContent = "✅ Thank you for logging in! Redirecting...";
+        setTimeout(() => {
+          document.body.innerHTML = "<h1 style='color:green;text-align:center;margin-top:20%;'>🎉 Welcome! You are successfully logged in.</h1>";
+        }, 2000);
+      } else {
+        message.textContent = "❌ Incorrect email or password!";
+        thankyou.textContent = "";
+      }
+    });
+  </script>
+</body>
+</html>

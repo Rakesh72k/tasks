@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Math Playground</title>
+</head>
+<body style="font-family: Arial;">
+
+  <h1>Math Playground</h1>
+
+  <!-- OTP Generator -->
+  <h2>Generate OTP</h2>
+  <button onclick="generateOTP()">Get OTP</button>
+  <p id="otpResult"></p>
+
+  <!-- BMI Calculator -->
+  <h2>BMI Calculator</h2>
+  Weight (kg): <input type="number" id="weight"><br><br>
+  Height (m): <input type="number" id="height"><br><br>
+  <button onclick="calculateBMI()">Check BMI</button>
+  <p id="bmiResult"></p>
+
+  <!-- Compound Interest -->
+  <h2>Compound Interest</h2>
+  Principal: <input type="number" id="principal"><br><br>
+  Rate (%): <input type="number" id="rate"><br><br>
+  Time (years): <input type="number" id="time"><br><br>
+  Compounds per year: <input type="number" id="n" value="1"><br><br>
+  <button onclick="compoundInterest()">Calculate</button>
+  <p id="ciResult"></p>
+
+  <!-- Fibonacci Series -->
+  <h2>Fibonacci Series</h2>
+  Enter n: <input type="number" id="fibNum"><br><br>
+  <button onclick="fibonacciSeries()">Generate</button>
+  <p id="fibResult"></p>
+
+  <!-- Random Color Generator -->
+  <h2>Random Color Generator</h2>
+  <button onclick="randomColor()">Get Color</button>
+  <p id="colorResult"></p>
+
+  <script>
+    // Generate OTP
+    function generateOTP() {
+      let otp = "";
+      for (let i = 0; i < 6; i++) {
+        otp += Math.floor(Math.random() * 10); // only digits
+      }
+      document.getElementById("otpResult").innerHTML = "Your OTP: " + otp;
+    }
+
+    // BMI Calculator
+    function calculateBMI() {
+      let w = document.getElementById("weight").value;
+      let h = document.getElementById("height").value;
+      if (w <= 0 || h <= 0) {
+        document.getElementById("bmiResult").innerHTML = "Please enter valid values.";
+        return;
+      }
+      let bmi = w / Math.pow(h, 2);
+      let result = "BMI: " + bmi.toFixed(2) + " → ";
+      if (bmi < 18.5) result += "Underweight";
+      else if (bmi < 25) result += "Normal";
+      else if (bmi < 30) result += "Overweight";
+      else result += "Obese";
+      document.getElementById("bmiResult").innerHTML = result;
+    }
+
+    // Compound Interest
+    function compoundInterest() {
+      let P = document.getElementById("principal").value;
+      let r = document.getElementById("rate").value / 100;
+      let t = document.getElementById("time").value;
+      let n = document.getElementById("n").value;
+      if (P <= 0 || r <= 0 || t <= 0 || n <= 0) {
+        document.getElementById("ciResult").innerHTML = "Please enter valid values.";
+        return;
+      }
+      let A = P * Math.pow((1 + r/n), (n*t));
+      let interest = A - P;
+      document.getElementById("ciResult").innerHTML =
+        "Total Amount: " + A.toFixed(2) + "<br>Interest: " + interest.toFixed(2);
+    }
+
+    // Fibonacci Series
+    function fibonacciSeries() {
+      let n = document.getElementById("fibNum").value;
+      if (n <= 0) {
+        document.getElementById("fibResult").innerHTML = "Please enter a valid number.";
+        return;
+      }
+      let a = 0, b = 1, result = "Series: ";
+      for (let i = 0; i < n; i++) {
+        result += a + " ";
+        let next = a + b;
+        a = b;
+        b = next;
+      }
+      document.getElementById("fibResult").innerHTML = result;
+    }
+
+    // Random Color Generator
+    function randomColor() {
+      let color = "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6,'0');
+      document.getElementById("colorResult").innerHTML = "Color: " + color;
+      document.body.style.backgroundColor = color; // keep background change
+    }
+  </script>
+
+</body>
+</html>

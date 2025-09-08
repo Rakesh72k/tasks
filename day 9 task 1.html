@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="curd.css">
+</head>
+<body>
+  <h2>Password Strength Checker</h2>
+
+  <label>Enter Password:</label>
+  <input type="password" id="password"><br><br>
+
+  <button onclick="checkPassword()">Check Strength</button>
+
+  <p id="result"></p>
+
+  <script>
+    function checkPassword() {
+      let pwd = document.getElementById("password").value;
+      let result = "Weak"; // default
+
+      let hasUpper = false;
+      let hasNumber = false;
+      let hasSpecial = false;
+      let specials = "!@#$%^&*";
+
+    
+      for (let i = 0; i < pwd.length; i++) {
+        let ch = pwd[i];
+
+        if (ch >= 'A' && ch <= 'Z') {
+          hasUpper = true;
+        }
+        if (ch >= '0' && ch <= '9') {
+          hasNumber = true;
+        }
+        if (specials.indexOf(ch) !== -1) {
+          hasSpecial = true;
+        }
+      }
+
+      
+      if (pwd.length >= 8 && hasUpper && hasNumber && hasSpecial) {
+        result = "Strong";
+      }
+
+      document.getElementById("result").innerText = "Password Strength: " + result;
+    }
+  </script>
+</body>
+</html>

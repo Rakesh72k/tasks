@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day & Night Theme Switcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      transition: background-color 0.5s;
+      padding: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Day & dark Theme Switcher</h1>
+  <button onclick="toggleTheme()">change</button>
+  <p id="message">Currently in Day Mode</p>
+
+  <script>
+    let isDay = true; 
+
+    function toggleTheme() {
+      let body = document.body;
+      let message = document.getElementById("message");
+
+      if (isDay) {
+        body.style.backgroundColor = "black";
+        body.style.color = "white";
+        message.innerText = "Currently in dark Mode";
+        isDay = false;
+      } else {
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+        message.innerText = "Currently in Day Mode";
+        isDay = true;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mood-Based Background Changer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      transition: background-color 0.5s;
+      padding: 50px;
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Choose Your Mood</h1>
+  
+  <button onclick="setMood('happy')">Happy</button>
+  <button onclick="setMood('sad')">Sad</button>
+  <button onclick="setMood('angry')">Angry</button>
+  <button onclick="setMood('relaxed')">Relaxed</button>
+
+  <p id="message">Your mood will appear here</p>
+
+  <script>
+    function setMood(mood) {
+      let message = document.getElementById("message");
+      let body = document.body;
+
+      if (mood === "happy") {
+        body.style.backgroundColor = "yellow";
+        message.innerText = "You are feeling Happy";
+      } 
+      else if (mood === "sad") {
+        body.style.backgroundColor = "lightblue";
+        message.innerText = "You are feeling Sad";
+      } 
+      else if (mood === "angry") {
+        body.style.backgroundColor = "red";
+        message.innerText = "You are feeling Angry";
+      } 
+      else if (mood === "relaxed") {
+        body.style.backgroundColor = "lightgreen";
+        message.innerText = "You are feeling Relaxed";
+      }
+    }
+  </script>
+</body>
+</html>

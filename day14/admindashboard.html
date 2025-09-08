@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="pw.css">
+
+<!-- Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<div class="frame">
+
+  <!-- top bar -->
+  <div class="topbar">
+    <button class="hamburger" id="menuBtn" aria-label="Toggle menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="brand">GeeksForGeeks</div>
+
+    <div class="search">
+      <input type="text" placeholder="Search"/>
+      <button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+    <div class="right-icons">
+      <i class="fa-regular fa-bell"></i>
+      <i class="fa-regular fa-user"></i>
+      <span class="avatar" title="Profile"></span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="nav">
+        <a href="#" class="active">
+          <span class="ico"><i class="fa-solid fa-square"></i></span> Dashboard
+        </a>
+        <a href="#">
+          <span class="ico"><i class="fa-regular fa-file-lines"></i></span> Articles
+        </a>
+        <a href="#">
+          <span class="ico"><i class="fa-solid fa-chart-column"></i></span> Report
+        </a>
+        <a href="#">
+          <span class="ico"><i class="fa-solid fa-building-columns"></i></span> Institution
+        </a>
+        <a href="#">
+          <span class="ico"><i class="fa-regular fa-id-badge"></i></span> Profile
+        </a>
+        <a href="#">
+          <span class="ico"><i class="fa-solid fa-gear"></i></span> Settings
+        </a>
+      </nav>
+
+      <div class="logout">
+        <a href="#" class="nav-item">
+          <span class="ico"><i class="fa-solid fa-arrow-right-from-bracket"></i></span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- main -->
+    <main class="main">
+     
+      <section class="cards">
+        <article class="card">
+          <div class="cico"><i class="fa-regular fa-eye"></i></div>
+          <div class="stat">
+            <div class="num">60.5K</div>
+            <div class="lbl">Article Views</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cico"><i class="fa-regular fa-thumbs-up"></i></div>
+          <div class="stat">
+            <div class="num">150</div>
+            <div class="lbl">Likes</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cico"><i class="fa-regular fa-comment-dots"></i></div>
+          <div class="stat">
+            <div class="num">320</div>
+            <div class="lbl">Comments</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="cico"><i class="fa-regular fa-circle-check"></i></div>
+          <div class="stat">
+            <div class="num">70</div>
+            <div class="lbl">Published</div>
+          </div>
+        </article>
+      </section>
+
+      <!-- recent articles panel + table -->
+      <section class="panel">
+        <div class="panel-header">
+          <span>Recent Articles</span>
+          <button class="btn-small">View All</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Views</th>
+                <th>Comments</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Article 72</td>
+                <td>2.0k</td>
+                <td>270</td>
+                <td><span class="badge">Published</span></td>
+              </tr>
+              <tr>
+                <td>Article 71</td>
+                <td>1.8k</td>
+                <td>190</td>
+                <td><span class="badge">Published</span></td>
+              </tr>
+              <tr>
+                <td>Article 70</td>
+                <td>1.9k</td>
+                <td>420</td>
+                <td><span class="badge">Published</span></td>
+              </tr>
+              <tr>
+                <td>Article 69</td>
+                <td>2.8k</td>
+                <td>310</td>
+                <td><span class="badge">Published</span></td>
+              </tr>
+              <tr>
+                <td>Article 68</td>
+                <td>1.3k</td>
+                <td>180</td>
+                <td><span class="badge">Published</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- bottom ribbon -->
+      <div class="ribbon">ADMIN PANEL</div>
+    </main>
+  </div>
+
+  <!-- mobile overlay -->
+  <div class="overlay" id="overlay"></div>
+</div>
+
+<script>
+  // Mobile sidebar toggle (hamburger nav bar)
+  const menuBtn = document.getElementById('menuBtn');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+
+  function toggleSide(){
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+  menuBtn.addEventListener('click', toggleSide);
+  overlay.addEventListener('click', toggleSide);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Discounts</title>
+</head>
+<body>
+  <h2>Product Discounts</h2>
+
+  <label>Select Product: </label>
+  <select id="product">
+    <option value="laptop">Laptop</option>
+    <option value="mouse">Mouse</option>
+    <option value="keyboard">Keyboard</option>
+  </select><br><br>
+
+  <label>Discount %: </label>
+  <input type="number" id="discount"><br><br>
+
+  <button onclick="calculateDiscount()">Submit</button>
+  <p id="result"></p>
+
+<script>
+  function calculateDiscount() {
+    let products = {
+      laptop: 50000,
+      mouse: 1000,
+      keyboard: 2000
+    };
+
+    let product = document.getElementById("product").value;
+    let discount = Number(document.getElementById("discount").value);
+
+    let price = products[product];
+    let finalPrice = price - (price * discount / 100);
+
+    document.getElementById("result").innerText =
+      "Final Price of " + product + " = ₹" + Math.round(finalPrice);
+  }
+</script>
+</body>
+</html>
